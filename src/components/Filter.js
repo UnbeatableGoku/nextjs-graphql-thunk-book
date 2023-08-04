@@ -8,7 +8,7 @@ const Filter = () => {
   const { query } = router;
   const { book } = query;
   const { filter } = query;
-  console.log(filter);
+  console.log(filter, 'this is filter---------------------------');
 
   const handleClearFilter = () => {
     console.log('call');

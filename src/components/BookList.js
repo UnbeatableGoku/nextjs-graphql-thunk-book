@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Rating } from 'react-simple-star-rating';
 
 import PropTypes from 'prop-types';
+import useBookList from 'src/talons/useBookList';
 
 /**
  * Represents a single book item in the book list.
@@ -27,6 +28,9 @@ import PropTypes from 'prop-types';
  */
 
 const BookList = ({ book }) => {
+  const { handleBookCompare, handleBookRemoveCompare, compareBook } =
+    useBookList();
+
   const img = book.volumeInfo.imageLinks?.thumbnail
     ? book.volumeInfo.imageLinks.thumbnail
     : 'https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=';
@@ -83,11 +87,21 @@ const BookList = ({ book }) => {
           <div className='px-3 pt-3 text-gray-500 font-medium'>
             {description}...
           </div>
-          <Link href={`/book/${book.id}`}>
-            <button className='bg-indigo-400 text-white font-bold px-3 py-2  rounded-sm m-3 hover:bg-indigo-700 hover:text-white'>
-              Learn More...
+          {compareBook.includes(book.id) ? (
+            <button
+              onClick={() => handleBookRemoveCompare(book.id)}
+              className='bg-red-400 text-white font-bold px-3 py-2  rounded-sm m-3 hover:bg-red-700 hover:text-white'
+            >
+              Remove
             </button>
-          </Link>
+          ) : (
+            <button
+              onClick={() => handleBookCompare(book.id)}
+              className='bg-indigo-400 text-white font-bold px-3 py-2  rounded-sm m-3 hover:bg-indigo-700 hover:text-white'
+            >
+              Compare
+            </button>
+          )}
         </div>
       </div>
       {saleInfo === 'For Sale' && (

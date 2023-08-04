@@ -2,6 +2,8 @@ import React from 'react';
 import { useSearchBox } from 'src/talons/useSearchBox';
 import Filter from './Filter';
 import { size } from 'lodash';
+import Link from 'next/link';
+import BookCompareBtn from './BookCompareBtn';
 
 /**
  * A search box component with a search input and submit button.
@@ -10,6 +12,7 @@ import { size } from 'lodash';
  * @returns {JSX.Element} The JSX representation of the search box component.
  */
 const SearchBox = ({ books }) => {
+  console.log(books ? books : 'this is null books --------------------');
   // Get the functions from the custom hook useSearchBox
   const { handleSubmit, register, handleSearchQuery } = useSearchBox();
 
@@ -38,8 +41,15 @@ const SearchBox = ({ books }) => {
             </div>
           </form>
           {size(books) > 0 && (
-            <div className=''>
-              <Filter />
+            <div className='flex items-center'>
+              <div className='ps-2'>
+                <Filter />
+              </div>
+              <Link href={'/book/compare'}>
+                <div className='ps-2'>
+                  <BookCompareBtn />
+                </div>
+              </Link>
             </div>
           )}
         </div>

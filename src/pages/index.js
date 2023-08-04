@@ -2,10 +2,9 @@ import SearchBox from '@components/SearchBox';
 import { size } from 'lodash';
 import { client } from 'src/graphql/client';
 import { GETALLBOOKS } from 'src/graphql/query';
-import { Pagination, Stack } from '@mui/material';
 import BookList from '@components/BookList';
-import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import BookPagination from '@components/BookPagination';
 /**
  * Represents a book object.
  *
@@ -25,45 +24,20 @@ import PropTypes from 'prop-types';
  */
 
 export default function Home({ books }) {
-  const router = useRouter();
-  const { query } = router;
-  const index = parseInt(query.page);
-  const handleChange = (event, value) => {
-    console.log(query);
-    router.push({ pathname: '/', query: { book: query.book, page: value } });
-  };
   return (
     <div className='bg-slate-200 text-black'>
-      <SearchBox />
-      {size(query) > 0 ? (
-        size(books) > 0 ? (
-          <div className='container mx-auto relative'>
-            <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  '>
-              {books.map((book) => (
-                <BookList book={book} key={book.id} />
-              ))}
-            </div>
-            <Stack
-              spacing={2}
-              display='flex'
-              justifyContent='center'
-              direction='row'
-              mt={10}
-            >
-              <Pagination
-                count={10}
-                variant='outlined'
-                page={index}
-                shape='rounded'
-                onChange={handleChange}
-              />
-            </Stack>
+      <SearchBox books={books} />
+      {size(books) > 0 ? (
+        <div className='container mx-auto relative'>
+          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  '>
+            {books.map((book) => (
+              <BookList book={book} key={book.id} />
+            ))}
           </div>
-        ) : (
-          <>...loading</>
-        )
+          <BookPagination />
+        </div>
       ) : (
-        <>search book here</>
+        <>Search Book Here</>
       )}
     </div>
   );
