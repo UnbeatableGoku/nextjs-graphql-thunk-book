@@ -1,7 +1,7 @@
-import { useLazyQuery } from '@apollo/client';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { GETCOMPAREBOOKS } from 'src/graphql/query';
+import { useLazyQuery } from "@apollo/client";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { GETCOMPAREBOOKS } from "src/graphql/query";
 
 const useCompareBooks = () => {
   const [fetchBooks, { error, data }] = useLazyQuery(GETCOMPAREBOOKS);
@@ -15,8 +15,8 @@ const useCompareBooks = () => {
       return [
         ...newArry,
         item.volumeInfo.title,
-        item.volumeInfo.averageRating ? item.volumeInfo.averageRating : null,
-        item.volumeInfo.publishedDate ? item.volumeInfo.publishedDate : null,
+        item.volumeInfo.averageRating ? item.volumeInfo.averageRating : "NA",
+        item.volumeInfo.publishedDate ? item.volumeInfo.publishedDate : "NA",
       ];
     });
     return newData;
@@ -28,11 +28,12 @@ const useCompareBooks = () => {
         ...newArry,
         item.volumeInfo.imageLinks
           ? item.volumeInfo.imageLinks.thumbnail
-          : 'https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=',
+          : "https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=",
       ];
     });
     return newData;
   };
+
   useEffect(() => {
     if (data) {
       const newData = handleSetCompareProductData(data.comparebooks);
@@ -52,7 +53,11 @@ const useCompareBooks = () => {
     }
   }, [compareBook]);
 
-  const compareProductAttributes = ['Title', 'Average', 'Published Date'];
+  const compareProductAttributes = [
+    "Title",
+    "Average Rating ",
+    "Published Date",
+  ];
 
   return {
     compareProduct,
