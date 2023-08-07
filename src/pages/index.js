@@ -25,11 +25,11 @@ import BookPagination from '@components/BookPagination';
 
 export default function Home({ books }) {
   return (
-    <div className='bg-slate-200 text-black'>
+    <div className=' text-black'>
       <SearchBox books={books} />
       {size(books) > 0 ? (
         <div className='container mx-auto relative'>
-          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  '>
+          <div className='bg-slate-200 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  '>
             {books.map((book) => (
               <BookList book={book} key={book.id} />
             ))}

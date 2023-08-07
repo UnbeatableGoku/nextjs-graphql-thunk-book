@@ -2,15 +2,40 @@ import React from 'react';
 import useCompareBooks from 'src/talons/useCompareBooks';
 
 const CompareBooks = () => {
-  const { compareProduct, compareProductAttributes, productImg } =
-    useCompareBooks();
+  const {
+    compareProduct,
+    compareProductAttributes,
+    productImg,
+    handleGetBack,
+  } = useCompareBooks();
   return (
     <div className='max-w-[950px] w-full mx-auto mt-10'>
+      <div>
+        <button
+          className='p-2 bg-indigo-500 text-white mb-2 rounded-sm'
+          onClick={() => handleGetBack()}
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width={24}
+            height={24}
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='1.25'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            className='lucide lucide-arrow-left-circle'
+          >
+            <circle cx={12} cy={12} r={10} />
+            <path d='M16 12H8' />
+            <path d='m12 8-4 4 4 4' />
+          </svg>
+        </button>
+      </div>
       <table className='w-full border-collapse  '>
         <colgroup>
           <col style={{ width: '200px' }} />{' '}
-          {/* Set the width for the first column */}
-          {/* Add more col elements with widths for other columns as needed */}
         </colgroup>
         <thead>
           <tr>
