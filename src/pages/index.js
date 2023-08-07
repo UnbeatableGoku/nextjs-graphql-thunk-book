@@ -1,18 +1,14 @@
-import SearchBox from '@components/SearchBox';
-import { size } from 'lodash';
-import { client } from 'src/graphql/client';
-import { GETALLBOOKS } from 'src/graphql/query';
-import BookList from '@components/BookList';
-import PropTypes from 'prop-types';
-import BookPagination from '@components/BookPagination';
-/**
- * Represents a book object.
- *
- * @typedef {Object} Book
- * @property {string} id - The unique identifier of the book.
- * @property {object} saleInfo - Information about the book's sale.
- * @property {object} volumeInfo - Information about the volume/book.
- */
+//components
+import SearchBox from "@components/SearchBox";
+import BookPagination from "@components/BookPagination";
+import BookList from "@components/BookList";
+
+//third-party
+import { size } from "lodash";
+
+//imports
+import { client } from "src/graphql/client";
+import { GETALLBOOKS } from "src/graphql/query";
 
 /**
  * Home component that displays a list of books.
@@ -25,11 +21,19 @@ import BookPagination from '@components/BookPagination';
 
 export default function Home({ books }) {
   return (
+<<<<<<< HEAD
     <div className=' text-black'>
       <SearchBox books={books} />
       {size(books) > 0 ? (
         <div className='container mx-auto relative'>
           <div className='bg-slate-200 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  '>
+=======
+    <div className="bg-slate-200 text-black ">
+      <SearchBox books={books} />
+      {size(books) > 0 ? (
+        <div className="container mx-auto relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  ">
+>>>>>>> efec5dfe41a37f7b0242d8f51e4d694a89d51f57
             {books.map((book) => (
               <BookList book={book} key={book.id} />
             ))}
@@ -42,11 +46,6 @@ export default function Home({ books }) {
     </div>
   );
 }
-Home.propTypes = {
-  id: PropTypes.string,
-  saleInfo: PropTypes.object,
-  volumeInfo: PropTypes.object,
-};
 
 /**
  * Fetches data from the server and passes it as props to the Home component.
@@ -56,6 +55,7 @@ Home.propTypes = {
  *
  * @returns {Object} An object containing the props to be passed to the Home component.
  */
+
 export async function getServerSideProps(context) {
   const { query } = context;
   if (size(query) > 0) {

@@ -31,8 +31,8 @@ const useCompareBooks = () => {
       return [
         ...newArry,
         item.volumeInfo.title,
-        item.volumeInfo.averageRating ? item.volumeInfo.averageRating : null,
-        item.volumeInfo.publishedDate ? item.volumeInfo.publishedDate : null,
+        item.volumeInfo.averageRating ? item.volumeInfo.averageRating : 'NA',
+        item.volumeInfo.publishedDate ? item.volumeInfo.publishedDate : 'NA',
       ];
     });
     return newData;
