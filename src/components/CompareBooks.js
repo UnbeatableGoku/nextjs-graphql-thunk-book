@@ -103,7 +103,7 @@ const CompareBooks = () => {
                     attrIndex % 2 == 0 ? 'bg-slate-200' : 'bg-slate-50'
                   }`}
                 >
-                  <th className='sticky left-0 bg-inherit p-2 border  text-left capitalize font-medium'>
+                  <th className='sticky left-0 bg-inherit p-2 border z-50 text-left capitalize font-medium'>
                     {attribute}
                   </th>
                   {compareProduct.map((product, productIndex) => (
