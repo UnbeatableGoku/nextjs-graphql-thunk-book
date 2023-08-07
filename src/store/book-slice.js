@@ -15,7 +15,11 @@ export const bookSlice = createSlice({
       );
       state.compareBook = filteredState;
     },
+    clearBookCompare(state) {
+      state.compareBook = [];
+    },
   },
 });
 
-export const { addBookToCompare, removeBookFromCompare } = bookSlice.actions;
+export const { addBookToCompare, removeBookFromCompare, clearBookCompare } =
+  bookSlice.actions;

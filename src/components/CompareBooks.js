@@ -1,16 +1,59 @@
-import { size } from 'lodash';
-import React from 'react';
+//hooks
 import useCompareBooks from 'src/talons/useCompareBooks';
 
+//third-party
+import { size } from 'lodash';
+
+//imports
+import React from 'react';
+
+/**
+ * The CompareBooks component displays a comparison table for a list of books.
+ * @returns {JSX.Element} JSX element representing the CompareBooks component.
+ */
 const CompareBooks = () => {
   const {
     compareProduct,
     compareProductAttributes,
     productImg,
     handleGetBack,
+    handleClearAllBooks,
   } = useCompareBooks();
   return (
     <div className='grid grid-cols-1 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-1 mt-20 mx-10  '>
+      <div className=' flex justify-between flex-row-reverse items-center'>
+        {size(compareProduct) > 0 && (
+          <button
+            className='p-2 bg-indigo-400 text-white'
+            onClick={() => {
+              handleClearAllBooks();
+            }}
+          >
+            Clear All Books
+          </button>
+        )}
+        <button
+          onClick={() => handleGetBack()}
+          className='p-2  bg-indigo-400 text-white'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width={24}
+            height={24}
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='1.25'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            className='lucide lucide-arrow-left-circle'
+          >
+            <circle cx={12} cy={12} r={10} />
+            <path d='M16 12H8' />
+            <path d='m12 8-4 4 4 4' />
+          </svg>
+        </button>
+      </div>
       {size(compareProduct) > 0 ? (
         <table className='w-full border-collapse  '>
           <colgroup>

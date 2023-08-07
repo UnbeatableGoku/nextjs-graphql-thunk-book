@@ -1,14 +1,14 @@
 //components
-import SearchBox from "@components/SearchBox";
-import BookPagination from "@components/BookPagination";
-import BookList from "@components/BookList";
+import SearchBox from '@components/SearchBox';
+import BookPagination from '@components/BookPagination';
+import BookList from '@components/BookList';
 
 //third-party
-import { size } from "lodash";
+import { size } from 'lodash';
 
 //imports
-import { client } from "src/graphql/client";
-import { GETALLBOOKS } from "src/graphql/query";
+import { client } from 'src/graphql/client';
+import { GETALLBOOKS } from 'src/graphql/query';
 
 /**
  * Home component that displays a list of books.
@@ -21,19 +21,11 @@ import { GETALLBOOKS } from "src/graphql/query";
 
 export default function Home({ books }) {
   return (
-<<<<<<< HEAD
     <div className=' text-black'>
       <SearchBox books={books} />
       {size(books) > 0 ? (
         <div className='container mx-auto relative'>
-          <div className='bg-slate-200 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  '>
-=======
-    <div className="bg-slate-200 text-black ">
-      <SearchBox books={books} />
-      {size(books) > 0 ? (
-        <div className="container mx-auto relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  ">
->>>>>>> efec5dfe41a37f7b0242d8f51e4d694a89d51f57
+          <div className='bg-slate-100 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  '>
             {books.map((book) => (
               <BookList book={book} key={book.id} />
             ))}

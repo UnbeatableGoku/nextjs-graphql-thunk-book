@@ -1,8 +1,12 @@
+//third-party
 import { useLazyQuery } from '@apollo/client';
+import { useDispatch, useSelector } from 'react-redux';
+
+//imports
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { GETCOMPAREBOOKS } from 'src/graphql/query';
+import { clearBookCompare } from 'src/store/book-slice';
 
 /**
  * Custom hook to handle book comparison data.
@@ -19,6 +23,7 @@ const useCompareBooks = () => {
   const [productImg, setProductImg] = useState([]);
   const { compareBook } = useSelector((state) => state.book);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   /**
    * Formats the book data for comparison.
@@ -84,11 +89,15 @@ const useCompareBooks = () => {
     router.back();
   }, [router]);
 
+  const handleClearAllBooks = useCallback(() => {
+    dispatch(clearBookCompare());
+  }, []);
   return {
     compareProduct,
     productImg,
     compareProductAttributes,
     handleGetBack,
+    handleClearAllBooks,
   };
 };
 

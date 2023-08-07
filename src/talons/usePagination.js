@@ -1,6 +1,6 @@
 //imports
-import { useRouter } from "next/router";
-import { useCallback } from "react";
+import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 
 /**
  * A custom hook to handle pagination functionality.
@@ -26,12 +26,12 @@ const usePagination = () => {
       console.log(query);
       if (filter) {
         router.push({
-          pathname: "/",
+          pathname: '/',
           query: { book: query.book, page: value, filter: filter },
         });
       } else {
         router.push({
-          pathname: "/",
+          pathname: '/',
           query: { book: query.book, page: value },
         });
       }
