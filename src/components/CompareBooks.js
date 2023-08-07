@@ -76,14 +76,14 @@ const CompareBooks = () => {
       </div>
       {size(compareProduct) > 0 ? (
         <div className='overflow-scroll  w-full'>
-          <table className=' border-collapse table-auto sm:table-fixed  w-full  '>
+          <table className=' relative border-collapse table-auto sm:table-fixed  w-full  '>
             <thead>
               <tr>
-                <th className='p-2 border text-left capitalize font-medium'>
+                <th className='p-2 border sticky left-0 z-50 bg-white text-left capitalize font-medium'>
                   Image
                 </th>
                 {productImg.map((product, index) => (
-                  <td className='p-2 border ' key={index}>
+                  <td className='p-2 border bg-white  ' key={index}>
                     <Image
                       className=' w-32 only: object-cover mx-auto'
                       src={`${product}`}
@@ -99,11 +99,11 @@ const CompareBooks = () => {
               {compareProductAttributes.map((attribute, attrIndex) => (
                 <tr
                   key={attrIndex}
-                  className={`  ${
+                  className={`   ${
                     attrIndex % 2 == 0 ? 'bg-slate-200' : 'bg-slate-50'
                   }`}
                 >
-                  <th className='p-2 border  text-left capitalize font-medium'>
+                  <th className='sticky left-0 bg-inherit p-2 border  text-left capitalize font-medium'>
                     {attribute}
                   </th>
                   {compareProduct.map((product, productIndex) => (
