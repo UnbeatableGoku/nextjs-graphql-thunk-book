@@ -75,8 +75,8 @@ const CompareBooks = () => {
         </button>
       </div>
       {size(compareProduct) > 0 ? (
-        <div className='overflow-scroll sm:overflow-hidden w-full'>
-          <table className=' border-collapse table-fixed w-full  '>
+        <div className='overflow-scroll  w-full'>
+          <table className=' border-collapse table-auto sm:table-fixed  w-full  '>
             <thead>
               <tr>
                 <th className='p-2 border text-left capitalize font-medium'>
