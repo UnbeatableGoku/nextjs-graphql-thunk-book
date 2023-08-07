@@ -1,6 +1,10 @@
 import React from 'react';
 import useBookCompareBtn from 'src/talons/useBookCompareBtn';
 
+/**
+ * BookCompareBtn component displays a button that allows users to compare books.
+ * It uses the `useBookCompareBtn` custom hook to handle book comparison logic.
+ */
 const BookCompareBtn = () => {
   const { compareBook } = useBookCompareBtn();
   return (

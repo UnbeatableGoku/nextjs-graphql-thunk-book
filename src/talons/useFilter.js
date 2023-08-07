@@ -1,6 +1,6 @@
 //imports
-import { useRouter } from "next/router";
-import { useCallback, useState } from "react";
+import { useRouter } from 'next/router';
+import { useCallback, useState } from 'react';
 
 /**
  * A custom hook to handle filtering functionality for book list.
@@ -15,7 +15,7 @@ import { useCallback, useState } from "react";
  */
 const useFilter = () => {
   const [showFilters, setshowFilters] = useState(false);
-  const filteData = ["paid-ebooks", "ebooks"];
+  const filteData = ['paid-ebooks', 'ebooks'];
   const router = useRouter();
   const { query } = router;
   const { book } = query;
@@ -24,9 +24,9 @@ const useFilter = () => {
   /**
    * Handle clearing the filter and navigate back to the home page with default filter settings.
    */
-  const handleClearFilter = useCallback (() => {
+  const handleClearFilter = useCallback(() => {
     router.push({
-      pathname: "/",
+      pathname: '/',
       query: { book: book, page: 1 },
     });
   }, [book, router]);
@@ -41,7 +41,7 @@ const useFilter = () => {
       setshowFilters(false);
 
       router.push({
-        pathname: "/",
+        pathname: '/',
         query: { book: book, page: 1, filter: e.target.innerText },
       });
     },

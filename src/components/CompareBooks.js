@@ -6,7 +6,9 @@ import { size } from 'lodash';
 
 //imports
 import React from 'react';
-
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import Image from 'next/image';
 /**
  * The CompareBooks component displays a comparison table for a list of books.
  * @returns {JSX.Element} JSX element representing the CompareBooks component.
@@ -22,14 +24,18 @@ const CompareBooks = () => {
   } = useCompareBooks();
   if (loading) {
     return (
-      <div class='h-screen bg-white'>
-        <div class='flex justify-center items-center h-full'>
-          <img
-            class='h-16 w-16'
-            src='https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif'
-            alt=''
-          />
-        </div>
+      <div class='h-screen bg-white mt-24 max-w-[1200px] w-full mx-auto'>
+        <SkeletonTheme>
+          <div className='flex justify-between'>
+            <Skeleton width={40} count={1} height={30} baseColor='#dee2e6' />
+            <Skeleton width={80} count={1} height={30} baseColor='#dee2e6' />
+          </div>
+          <Skeleton count={1} height={150} baseColor='#dee2e6' />
+          <Skeleton count={1} height={80} baseColor='#dee2e6' />
+          <Skeleton count={1} height={80} baseColor='#dee2e6' />
+          <Skeleton count={1} height={80} baseColor='#dee2e6' />
+          <Skeleton count={1} height={80} baseColor='#dee2e6' />
+        </SkeletonTheme>
       </div>
     );
   }
@@ -38,7 +44,7 @@ const CompareBooks = () => {
       <div className=' flex justify-between    items-center'>
         {size(compareProduct) > 0 && (
           <button
-            className='p-2 bg-indigo-400 text-white mb-5'
+            className='p-2 bg-red-400 text-white mb-5'
             onClick={() => {
               handleClearAllBooks();
             }}
@@ -78,10 +84,12 @@ const CompareBooks = () => {
                 </th>
                 {productImg.map((product, index) => (
                   <td className='p-2 border ' key={index}>
-                    <img
+                    <Image
                       className=' w-32 only: object-cover mx-auto'
                       src={`${product}`}
                       alt='img'
+                      width={150}
+                      height={230}
                     />
                   </td>
                 ))}

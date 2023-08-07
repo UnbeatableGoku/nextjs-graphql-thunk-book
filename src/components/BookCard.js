@@ -6,7 +6,6 @@ import { Rating } from 'react-simple-star-rating';
 
 //imports
 import Image from 'next/image';
-import Link from 'next/link';
 
 //prop-types
 import PropTypes from 'prop-types';
@@ -109,18 +108,6 @@ const BookCard = ({ book }) => {
           )}
         </div>
       </div>
-      {/* {saleInfo === 'For Sale' && (
-        <div className='absolute bottom-4 cursor-pointer right-2'>
-          <Link href={`${buyLink}`}>
-            <img
-              src={
-                'https://seeklogo.com/images/G/google-play-books-logo-FB96539C88-seeklogo.com.png'
-              }
-              width={27}
-            />
-          </Link>
-        </div>
-      )} */}
     </div>
   );
 };
