@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import { GETCOMPAREBOOKS } from 'src/graphql/query';
 import { clearBookCompare } from 'src/store/book-slice';
+import { Rating } from 'react-simple-star-rating';
 
 /**
  * Custom hook to handle book comparison data.
@@ -18,7 +19,7 @@ import { clearBookCompare } from 'src/store/book-slice';
  * }}
  */
 const useCompareBooks = () => {
-  const [fetchBooks, { error, data }] = useLazyQuery(GETCOMPAREBOOKS);
+  const [fetchBooks, { error, data, loading }] = useLazyQuery(GETCOMPAREBOOKS);
   const [compareProduct, setCompareProduct] = useState([]);
   const [productImg, setProductImg] = useState([]);
   const { compareBook } = useSelector((state) => state.book);
@@ -36,8 +37,16 @@ const useCompareBooks = () => {
       return [
         ...newArry,
         item.volumeInfo.title,
-        item.volumeInfo.averageRating ? item.volumeInfo.averageRating : 'NA',
+        item.volumeInfo.averageRating ? (
+          <Rating initialValue={item.volumeInfo.averageRating} size={16} />
+        ) : (
+          'NA'
+        ),
         item.volumeInfo.publishedDate ? item.volumeInfo.publishedDate : 'NA',
+        item.volumeInfo.authors ? item.volumeInfo.authors.join(',') : 'NA',
+        item.volumeInfo.categories
+          ? item.volumeInfo.categories.join(',')
+          : 'NA',
       ];
     });
     return newData;
@@ -64,6 +73,7 @@ const useCompareBooks = () => {
   useEffect(() => {
     if (data) {
       const newData = handleSetCompareProductData(data.comparebooks);
+      console.log(data);
       const newProductImg = handleSetCompareProductImg(data.comparebooks);
       setCompareProduct(newData);
       setProductImg(newProductImg);
@@ -80,7 +90,13 @@ const useCompareBooks = () => {
     }
   }, [compareBook]);
 
-  const compareProductAttributes = ['Title', 'Average', 'Published Date'];
+  const compareProductAttributes = [
+    'Title',
+    'Average',
+    'Published Date',
+    'Author',
+    'Categories',
+  ];
 
   /**
    * Navigates back to the previous page using Next.js router.
@@ -97,6 +113,7 @@ const useCompareBooks = () => {
     productImg,
     compareProductAttributes,
     handleGetBack,
+    loading,
     handleClearAllBooks,
   };
 };

@@ -6,7 +6,9 @@ const getCompareBooks = gql`
       id
       volumeInfo {
         title
+        authors
         averageRating
+        categories
         publishedDate
         imageLinks {
           thumbnail

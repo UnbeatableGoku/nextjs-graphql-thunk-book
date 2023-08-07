@@ -8,7 +8,8 @@ import LoadingBar from 'react-top-loading-bar';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from 'src/store/store';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const ref = useRef(null);
@@ -32,8 +33,9 @@ function MyApp({ Component, pageProps }) {
     <>
       <Provider store={store}>
         <ApolloProvider client={client}>
-          <PersistGate loading={null} persistor={persistor}>
-            <LoadingBar ref={ref} color='#f11946' />
+          <PersistGate loading={'loading'} persistor={persistor}>
+            <LoadingBar ref={ref} color='#ba5bff' />
+            <ToastContainer />
             <Component {...pageProps} />
           </PersistGate>
         </ApolloProvider>

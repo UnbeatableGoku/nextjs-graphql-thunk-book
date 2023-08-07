@@ -1,7 +1,7 @@
 //components
 import SearchBox from '@components/SearchBox';
 import BookPagination from '@components/BookPagination';
-import BookList from '@components/BookList';
+import BookCard from '@components/BookCard';
 
 //third-party
 import { size } from 'lodash';
@@ -27,7 +27,7 @@ export default function Home({ books }) {
         <div className='container mx-auto relative'>
           <div className='bg-slate-100 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  '>
             {books.map((book) => (
-              <BookList book={book} key={book.id} />
+              <BookCard book={book} key={book.id} />
             ))}
           </div>
           <BookPagination />

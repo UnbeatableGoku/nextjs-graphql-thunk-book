@@ -18,13 +18,27 @@ const CompareBooks = () => {
     productImg,
     handleGetBack,
     handleClearAllBooks,
+    loading,
   } = useCompareBooks();
+  if (loading) {
+    return (
+      <div class='h-screen bg-white'>
+        <div class='flex justify-center items-center h-full'>
+          <img
+            class='h-16 w-16'
+            src='https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif'
+            alt=''
+          />
+        </div>
+      </div>
+    );
+  }
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-1 mt-20 mx-10  '>
-      <div className=' flex justify-between flex-row-reverse items-center'>
+    <div className=' mt-20  mx-auto  max-w-[1200px] w-full '>
+      <div className=' flex justify-between    items-center'>
         {size(compareProduct) > 0 && (
           <button
-            className='p-2 bg-indigo-400 text-white'
+            className='p-2 bg-indigo-400 text-white mb-5'
             onClick={() => {
               handleClearAllBooks();
             }}
@@ -34,7 +48,7 @@ const CompareBooks = () => {
         )}
         <button
           onClick={() => handleGetBack()}
-          className='p-2  bg-indigo-400 text-white'
+          className='p-2  bg-indigo-400 text-white mb-5'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -55,46 +69,48 @@ const CompareBooks = () => {
         </button>
       </div>
       {size(compareProduct) > 0 ? (
-        <table className='w-full border-collapse  '>
-          <colgroup>
-            <col style={{ width: '200px' }} />{' '}
-          </colgroup>
-          <thead>
-            <tr>
-              <th className='p-2 border text-center text-3xl font-normal'>
-                Attribute
-              </th>
-              {productImg.map((product, index) => (
-                <td className='p-2 border ' key={index}>
-                  <img
-                    className=' w-32 only: object-cover mx-auto'
-                    src={`${product}`}
-                    alt='img'
-                  />
-                </td>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {compareProductAttributes.map((attribute, attrIndex) => (
-              <tr
-                key={attrIndex}
-                className={`  ${
-                  attrIndex % 2 == 0 ? 'bg-slate-200' : 'bg-slate-50'
-                }`}
-              >
-                <th className='p-2 border  text-left capitalize font-medium'>
-                  {attribute}
+        <div className='overflow-scroll sm:overflow-hidden w-full'>
+          <table className=' border-collapse table-fixed w-full  '>
+            <thead>
+              <tr>
+                <th className='p-2 border text-left capitalize font-medium'>
+                  Image
                 </th>
-                {compareProduct.map((product, productIndex) => (
-                  <td className={`p-2 border  font-light `} key={productIndex}>
-                    {product[attrIndex]}
+                {productImg.map((product, index) => (
+                  <td className='p-2 border ' key={index}>
+                    <img
+                      className=' w-32 only: object-cover mx-auto'
+                      src={`${product}`}
+                      alt='img'
+                    />
                   </td>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {compareProductAttributes.map((attribute, attrIndex) => (
+                <tr
+                  key={attrIndex}
+                  className={`  ${
+                    attrIndex % 2 == 0 ? 'bg-slate-200' : 'bg-slate-50'
+                  }`}
+                >
+                  <th className='p-2 border  text-left capitalize font-medium'>
+                    {attribute}
+                  </th>
+                  {compareProduct.map((product, productIndex) => (
+                    <td
+                      className={`p-2 border  font-light `}
+                      key={productIndex}
+                    >
+                      {product[attrIndex]}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <div className=' mt-10 flex justify-center items-center   '>
           <h1 className='text-3xl mx-2'>No Books Found For Compare!</h1>

@@ -1,9 +1,10 @@
 //imports
-import { useCallback } from "react";
-import { addBookToCompare, removeBookFromCompare } from "src/store/book-slice";
+import { useCallback } from 'react';
+import { addBookToCompare, removeBookFromCompare } from 'src/store/book-slice';
 
 //third-party
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 /**
  * Custom hook to handle book list operations, such as adding books to compare list and removing books from it.
@@ -13,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
  *    handleBookRemoveCompare: Function,
  * }}
  */
-const useBookList = () => {
+const useBookCard = () => {
   const dispatch = useDispatch();
   const { compareBook } = useSelector((state) => state.book);
 
@@ -23,9 +24,16 @@ const useBookList = () => {
    */
   const handleBookCompare = useCallback(
     (id) => {
-      dispatch(addBookToCompare(id));
+      console.log(compareBook);
+      if (compareBook.length < 5) {
+        console.log(compareBook.length);
+        dispatch(addBookToCompare(id));
+        compareBook;
+      } else {
+        toast.warning("You can't add more than 5 books for compare");
+      }
     },
-    [dispatch]
+    [dispatch, compareBook]
   );
 
   /**
@@ -46,4 +54,4 @@ const useBookList = () => {
   };
 };
 
-export default useBookList;
+export default useBookCard;
