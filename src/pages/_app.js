@@ -11,15 +11,18 @@ import { persistor, store } from 'src/store/store';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function MyApp({ Component, pageProps }) {
-  const ref = useRef();
   return (
     <>
       <Provider store={store}>
         <ApolloProvider client={client}>
           <PersistGate persistor={persistor}>
             <LoadingBar ref={ref} color='#ba5bff' />
-            <ToastContainer />
-            <Component {...pageProps} />
+            {() => (
+              <>
+                <ToastContainer />
+                <Component {...pageProps} />
+              </>
+            )}
           </PersistGate>
         </ApolloProvider>
       </Provider>
