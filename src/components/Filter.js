@@ -35,8 +35,8 @@ const Filter = () => {
         </div>
       </button>
       <div>
-        <ul>
-          <div className='bg-slate-100 text-black w-32 absolute z-10 right-0  '>
+        <div className='bg-slate-100 text-black w-32 absolute z-10 right-0  '>
+          <ul>
             {showFilters &&
               filteData.map((item, index) => (
                 <li
@@ -47,8 +47,8 @@ const Filter = () => {
                   {item}
                 </li>
               ))}
-          </div>
-        </ul>
+          </ul>
+        </div>
         {filter && (
           <div className='absolute right-0  top-16  bg-slate-800 text-white  flex items-center rounded-md    '>
             <svg

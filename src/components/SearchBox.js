@@ -69,6 +69,6 @@ const SearchBox = ({ books }) => {
 };
 
 SearchBox.propTypes = {
-  books: PropTypes.array.isRequired,
+  books: PropTypes.array,
 };
 export default SearchBox;
