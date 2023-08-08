@@ -1,12 +1,11 @@
 import { client } from 'src/graphql/client';
 import '../styles/globals.css';
 import { ApolloProvider } from '@apollo/client';
-import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import LoadingBar from 'react-top-loading-bar';
 import { Provider } from 'react-redux';
 import { store } from 'src/store/store';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PersistWrapper from 'src/wrapper/PersistWrapper';
 function MyApp({ Component, pageProps }) {
