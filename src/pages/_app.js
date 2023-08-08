@@ -11,29 +11,12 @@ import { persistor, store } from 'src/store/store';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  const ref = useRef(null);
-  useEffect(() => {
-    const start = () => {
-      ref.current.continuousStart();
-    };
-    const end = () => {
-      ref.current.complete();
-    };
-    router.events.on('routeChangeStart', start);
-    router.events.on('routeChangeError', end);
-    router.events.on('routeChangeComplete', end);
-    return () => {
-      router.events.off('routeChangeStart', start);
-      router.events.off('routeChangeComplete', end);
-      router.events.off('routeChangeError', end);
-    };
-  }, []);
+  const ref = useRef();
   return (
     <>
       <Provider store={store}>
         <ApolloProvider client={client}>
-          <PersistGate loading={'loading'} persistor={persistor}>
+          <PersistGate persistor={persistor}>
             <LoadingBar ref={ref} color='#ba5bff' />
             <ToastContainer />
             <Component {...pageProps} />
