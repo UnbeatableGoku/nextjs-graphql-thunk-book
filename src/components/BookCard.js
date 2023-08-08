@@ -59,6 +59,7 @@ const BookCard = ({ book }) => {
             width={250}
             height={250}
             className=' object-contain w-full h-full '
+            priority
           />
         </div>
         <div className='font-light py-2 px-3 text-xl  text-slate-950 uppercase'>
