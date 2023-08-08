@@ -59,7 +59,7 @@ const BookCard = ({ book }) => {
             width={250}
             height={250}
             className=' object-contain w-full h-full '
-            priority
+            priority={true}
           />
         </div>
         <div className='font-light py-2 px-3 text-xl  text-slate-950 uppercase'>
@@ -89,20 +89,20 @@ const BookCard = ({ book }) => {
           <div className='px-3 text-red-700'>No Rating</div>
         )}
         <div>
-          <div className='px-3 pt-3 text-gray-500 font-medium'>
+          <div className='px-3 pt-3 text-gray-800 font-medium'>
             {description}...
           </div>
           {compareBook.includes(book.id) ? (
             <button
               onClick={() => handleBookRemoveCompare(book.id)}
-              className='bg-red-400 text-white font-bold px-3 py-2  rounded-sm m-3 hover:bg-red-700 hover:text-white'
+              className='bg-red-700 text-white font-bold px-3 py-2  rounded-sm m-3 hover:bg-red-950 hover:text-white'
             >
               Remove
             </button>
           ) : (
             <button
               onClick={() => handleBookCompare(book.id)}
-              className='bg-indigo-400 text-white font-bold px-3 py-2  rounded-sm m-3 hover:bg-indigo-700 hover:text-white'
+              className='bg-indigo-700 text-white font-bold px-3 py-2  rounded-sm m-3 hover:bg-indigo-950 hover:text-white'
             >
               Compare
             </button>

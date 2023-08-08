@@ -17,7 +17,7 @@ const Filter = () => {
 
   return (
     <div className='relative'>
-      <button>
+      <button aria-label='filter'>
         <div
           className='bg-slate-200 inline-block p-3 rounded font-bold hover:cursor-pointer justify-end'
           onClick={() => setshowFilters(!showFilters)}

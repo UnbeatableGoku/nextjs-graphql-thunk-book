@@ -43,7 +43,7 @@ const SearchBox = ({ books }) => {
                   className=' rounded-r-none  focus:rounded-r-none rounded-md p-3  w-full h-full   outline-none'
                 />
                 <input
-                  className='bg-indigo-400 text-white text-lg font-semibold  cursor-pointer rounded-r-md  border-none transition-all duration-500 hover:bg-indigo-500 h-full p-3'
+                  className='bg-indigo-700 text-white text-lg font-semibold  cursor-pointer rounded-r-md  border-none transition-all duration-500 hover:bg-indigo-500 h-full p-3'
                   type='submit'
                   value='Go'
                 />

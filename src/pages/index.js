@@ -9,6 +9,7 @@ import { size } from 'lodash';
 //imports
 import { client } from 'src/graphql/client';
 import { GETALLBOOKS } from 'src/graphql/query';
+import Head from 'next/head';
 
 /**
  * Home component that displays a list of books.
@@ -21,21 +22,27 @@ import { GETALLBOOKS } from 'src/graphql/query';
 
 export default function Home({ books }) {
   return (
-    <div className=' text-black'>
-      <SearchBox books={books} />
-      {size(books) > 0 ? (
-        <div className='container mx-auto relative'>
-          <div className='bg-slate-100 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  '>
-            {books.map((book) => (
-              <BookCard book={book} key={book.id} />
-            ))}
+    <>
+      <Head>
+        <title>Book Api </title>
+        <meta name='description' content='Books search app' />
+      </Head>
+      <div className=' text-black'>
+        <SearchBox books={books} />
+        {size(books) > 0 ? (
+          <div className='container mx-auto relative'>
+            <div className='bg-slate-100 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  '>
+              {books.map((book) => (
+                <BookCard book={book} key={book.id} />
+              ))}
+            </div>
+            <BookPagination />
           </div>
-          <BookPagination />
-        </div>
-      ) : (
-        <>Search Book Here</>
-      )}
-    </div>
+        ) : (
+          <>Search Book Here</>
+        )}
+      </div>
+    </>
   );
 }
 
