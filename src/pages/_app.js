@@ -18,11 +18,9 @@ function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <ApolloProvider client={client}>
           <PersistWrapper>
-            <>
-              <LoadingBar ref={ref} color='#ba5bff' />
-              <ToastContainer />
-              <Component {...pageProps} />
-            </>
+            <LoadingBar ref={ref} color='#ba5bff' />
+            <ToastContainer />
+            <Component {...pageProps} />
           </PersistWrapper>
         </ApolloProvider>
       </Provider>
