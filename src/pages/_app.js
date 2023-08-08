@@ -10,21 +10,20 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from 'src/store/store';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PersistWrapper } from 'src/wrapper/PersistWrapper';
 function MyApp({ Component, pageProps }) {
   const ref = useRef(null);
   return (
     <>
       <Provider store={store}>
         <ApolloProvider client={client}>
-          <PersistGate persistor={persistor}>
-            {() => (
-              <>
-                <LoadingBar ref={ref} color='#ba5bff' />
-                <ToastContainer />
-                <Component {...pageProps} />
-              </>
-            )}
-          </PersistGate>
+          <PersistWrapper>
+            <>
+              <LoadingBar ref={ref} color='#ba5bff' />
+              <ToastContainer />
+              <Component {...pageProps} />
+            </>
+          </PersistWrapper>
         </ApolloProvider>
       </Provider>
     </>
